@@ -1,0 +1,13 @@
+body {
+	background-image: url(../images/a_nba-basketball-court-floor-view-jzgtvwaqjpg-basketball-court-for-basketball-hardwood-floor-texture.jpg) 
+}
+
+h1 {
+	text-align: center;
+}
+
+.game-border {
+	border: solid 5px black;
+	height: 900px;
+	margin: 40px 0px 40px 0px;
+}
