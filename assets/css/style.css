@@ -20,6 +20,25 @@ h4 {
 	text-align: center;
 }
 
+#wins {
+	margin-right: -35px;
+}
+
+#losses {
+	bottom: 42px;
+	left: 45px;
+}
+
+.wins {
+	margin-right: 15px;
+	float: right;
+}
+
+.losses {
+	position: absolute;
+	bottom: 82px;
+}
+
 .game-border {
 	border: solid 6px black;
 	height: 300px;
@@ -45,4 +64,18 @@ h4 {
 .separator {
 	border-right: solid #000000 3px;
 	height: 210px; 
+}
+
+.audio-player {
+	width: 70px;
+	background-color: red;
+	position: absolute;
+	top: 16%;
+    left: 46%;
+    margin-right: -54%;
+
+}
+
+.text-center {
+	margin-left: 35px;
 }

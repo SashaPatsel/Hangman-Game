@@ -14,6 +14,9 @@
 
 	<!-- The page's header -->
 		<h1 class="roboto">The (un)Official NBA Hangman Game <span><img width=10% height="auto" src="assets/images/nba-logo-transparent-png-logo-download.png" alt="NBA logo"></span></h1>
+		<audio class="audio-player" controls autoplay loop><!-- autoplay loop -->
+      <source src="assets/music/Eric_B_Rakim_-_I_Aint_No_Joke.mp3">
+</audio>
 		
 <div class="container roboto">
 	<!-- The top container featuring pictures -->
@@ -35,12 +38,18 @@
 			<div class="row">
 				<div class="col-md-6 separator">
 					<h3><i>The Word</i></h3>
+					<h3 class="wins">Wins:</h3>
 					<br>
-					<h2><strong>_ _ _ _ _ _</strong></h2>
+					<br>
+					<h3 class="wins" id="wins">0</h3>
+					<br>
+					<h2 class="text-center"><strong>_ _ _ _ _ _</strong></h2>
 				</div>
 				<div class="col-md-6">
 					<h3>Remaining Guesses:</h3>
 					<h3 id="guesses-remain">12</h3>
+					<h3 class="losses">Losses:</h3>
+					<h3 class="losses" id="losses">0</h3>
 					<h3>Letters Guessed:</h3>
 					<h3 id="user-guesses">L M N O P</h3>
 				</div>	
@@ -49,9 +58,7 @@
 	</div>	
 </div>
 <h1 class="roboto">Thanks For Playing!</h1>
-<audio autoplay loop>
-      <source src="assets/music/Eric_B_Rakim_-_I_Aint_No_Joke.mp3">
-</audio>
+
 </body>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
 </html>
