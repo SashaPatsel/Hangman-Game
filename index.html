@@ -4,21 +4,54 @@
 	<title>NBA Hangman Game!</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
 	<!-- You should probably sketch out what you need to do on a piece of paper first -->
 	<!-- Maybe show an nba gif after every correct guess -->
 	<!-- Pick songs for the game -->
 	<!-- Consider a horizontal layout. The image goes on top, and the right column from the video goes beneath it. -->
-		<h1>The (un)Official NBA hangman game</h1>
-<div class="container">
+
+	<!-- The page's header -->
+		<h1 class="roboto">The (un)Official NBA Hangman Game <span><img width=10% height="auto" src="assets/images/nba-logo-transparent-png-logo-download.png" alt="NBA logo"></span></h1>
+		
+<div class="container roboto">
+	<!-- The top container featuring pictures -->
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 game-border">
+		<div class="col-md-12 game-border">
+			<img class=" first-in-line legends" width="20%" height="auto" src="assets/images/stephen-curry.png"> 
+			<img class=" legends legends-low" width="20%" height="auto" src="assets/images/LeBron-James.png">
+			<img class="legends legends-low" width="20%" height="auto" src="assets/images/shaq.png">
 		</div>
-		<div class="col-md-1"></div>
+	</div>	
+	<!-- The bottom container featuring the game -->
+	<div class="row">
+		<div class="col-md-12 game-border">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Press Any Key To Take Your Shot!</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 separator">
+					<h3><i>The Word</i></h3>
+					<br>
+					<h2><strong>_ _ _ _ _ _</strong></h2>
+				</div>
+				<div class="col-md-6">
+					<h3>Remaining Guesses:</h3>
+					<h3 id="guesses-remain">12</h3>
+					<h3>Letters Guessed:</h3>
+					<h3 id="user-guesses">L M N O P</h3>
+				</div>	
+			</div>	
+		</div>
 	</div>	
 </div>
+<h1 class="roboto">Thanks For Playing!</h1>
+<audio autoplay loop>
+      <source src="assets/music/Eric_B_Rakim_-_I_Aint_No_Joke.mp3">
+</audio>
 </body>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
 </html>
