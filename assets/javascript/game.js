@@ -10,11 +10,103 @@ var hangman = {
 	p9: ["Gregg Popovich", "_ _ _ _ _   _ _ _ _ _ _ _ _"],
 	p10: ["Charles Barkley", "_ _ _ _ _ _ _   _ _ _ _ _ _ _"]
 };
+//Place holder for current word
+var player = "";
+
+var wins = 0;
+
+var losses = 0;
+
+var guesses = 10;
+
+var startingPerson = 1;
+
+var amountPeople = 10;
+
+var wrongGuesses = [];
+
+var wordQueue = [];
+
+var wordLetters = [];
+
+// Steps to be completed:
+//1. reset button?
+//2.
+function hangGame() {
+	//Beginning the queue of people to be hanged
+	wordQueue = hangman["p"+ startingPerson][0];
+	//splitting player names into letters
+	wordLetters = wordQueue.split('');
+	//The underscores
+	unguessed = wordLetters.length;
+	
 
 
-// if (userInput === "k" || userInput === "o" || userInput === "b" || userInput === "e") {
+document.getElementById("user-guesses").innerHTML = wrongGuesses;
 
-// }
+document.onkeyup = function() {
+	var userGuess = event.key;
+	if (userGuess === hangman.p1[0]) {
+	}
+};
+
+function scoreboard() {
+	var keepScore = guesses
+	document.getElementById("guesses-remain").innerHTML = keepScore
+
+}
+
+//Displays incorrectly guessed letter on screen
+function usedLetters() {
+	var userGuess = event.key
+
+	if (userGuess !== player.toLowerCase().indexOf( String.fromCharCode( e.which )) {
+		document.getElementById("user-guesses").innerHTML = userGuess
+	}
+}
+
+function playerName() {
+	for (var i = 0 ; i < hangman.p1[0].length ; i++) {
+		console.log(i);
+	}
+};
+
+function checkAnswer(userInput){
+	if (quiz["q"+ startingQuestion][1]===userInput){
+		score = score + 1;
+
+		nextPerson()
+		reloadInfo()
+	}else{
+		nextPerson()
+		reloadInfo()
+	}
+}
+
+function reloadInfo(){
+	var scoreHtml = "<p>SCORE: " + score + "</p>"
+	document.querySelector("#scorePlace").innerHTML = scoreHtml;
+	 
+	var questionHtml = quiz["p"+ startingQuestion][0]
+	document.querySelector("#questionPlace").innerHTML = questionHtml;
+}
+
+function nextPerson(){
+	if(startingPerson <= amountPeople){
+		startingPerson++;
+	}
+	// else{
+
+	// 	var scoreHtml = "<h1>GAME OVER</h1>"
+	// 	document.querySelector("#scorePlace").innerHTML = scoreHtml;
+	// 	document.querySelector("#questionPlace").innerHTML = questionHtml;
+	// }
+	
+};
+
+//Notes:
+
+
 
 //Will need to use toLowerCase()
 
@@ -26,14 +118,4 @@ var hangman = {
 // 	function for adding guessed letters to list
 // }
 
-function scoreboard() {
-	
-}
-
-function playerName() {
-	for (var i = 0 ; i < hangman.p1[0].length ; i++) {
-		console.log(i);
-	}
-};
-
-playerName();
+//document.getElementById("id").innerHTML
