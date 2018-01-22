@@ -27,10 +27,8 @@ var wordQueue = "";
 
 var wordLetters = [];
 
-goodGuesses = [];
-// Steps to be completed:
-//1. reset button?
-//2.
+var goodGuesses = [];
+
 function hangGame() {
 	//Beginning the queue of people to be hanged
 	wordQueue = hangman["p"+ startingPerson][0];
@@ -65,42 +63,54 @@ function hangGame() {
 	document.getElementById("user-guesses").innerHTML = wrongGuesses;
 };
 
-hangGame()
 
 function guessVsWord(userInput) {
-				if(wordQueue.indexOf(userInput) > -1) {
-					for(var i = 0; i < unguessed; i++) {
-						if(wordLetters[i] === userInput) {
-							wins++;
-							goodGuesses[i] = userInput;
-							document.getElementById('the-word').innerHTML = goodGuesses.join(' ');
-						}	
-					}
-				}
-				else {
-					wrongLetters.push(userInput);
-					amountPeople --;
-					document.getElementById("guesses-remain").innerHTML = guessRemain;
-					document.getElementById("user-guesses").innerHTML = wrongGuesses;
-				}
+	if(wordQueue.indexOf(userInput) > -1) {
+		for(var i = 0; i < unguessed; i++) {
+			if(wordLetters[i].toLowerCase() === userInput) {
+				wins++;
+				goodGuesses[i] = userInput;
+				document.getElementById('the-word').innerHTML = goodGuesses.join(' ');
+			}	
+		}
+	}
+	else {
+		wrongLetters.push(userInput);
+		guessRemain --;
+		document.getElementById("guesses-remain").innerHTML = guessRemain;
+		document.getElementById("user-guesses").innerHTML = wrongGuesses;
+	}
 			
 			
 		
 };
 
+function winVsLoss() {
+	if(wins === unguessed) {
+		wins++;
+		document.getElementById('wins').innerHTML = wins;
+	}
+	else if(guessRemain === 0) {
+		losses++;
+		document.getElementById('losses').innerHTML = losses;
+	}
+};
+
+hangGame();
+
+document.onkeyup = function(event) {
+	var userGuess = event.key;
+	for(var i = 0; i < possAnswers.length; i++) {	
+		if(userGuess === possAnswers[i]) {
+			var wordParts = possAnswers.splice(i,1);
+			guessVsWord(userGuess);
+			winVsLoss();
+		}
+	}		
+		
+};
 
 
-// document.onkeyup = function() {
-// 	var userGuess = event.key;
-// 	if (userGuess === hangman.p1[0]) {
-// 	}
-// };
-
-// function scoreboard() {
-// 	var keepScore = guesses
-// 	document.getElementById("guesses-remain").innerHTML = keepScore
-
-// }
 
 // //Displays incorrectly guessed letter on screen
 // function usedLetters() {
