@@ -19,7 +19,7 @@ var losses = 0;
 
 var startingPerson = 1;
 
-var amountPeople = 10;
+var guessRemain = 10;
 
 var wrongGuesses = [];
 
@@ -39,7 +39,7 @@ function hangGame() {
 	//Number of underscores
 	unguessed = wordLetters.length;
 	
-	amountPeople = 10;
+	guessRemain = 10;
 	wrongLetters =[];
 	goodGuesses =[];
 	possAnswers = ['a','b','c',
@@ -59,13 +59,36 @@ function hangGame() {
 	}
 
 	document.getElementById("the-word").innerHTML = goodGuesses.join(" ");
-	document.getElementById("guesses-remain").innerHTML = amountPeople;
+	document.getElementById("guesses-remain").innerHTML = guessRemain;
 	document.getElementById("wins").innerHTML = wins;
 	document.getElementById("losses").innerHTML = losses;
 	document.getElementById("user-guesses").innerHTML = wrongGuesses;
 };
 
 hangGame()
+
+function guessVsWord(userInput) {
+				if(wordQueue.indexOf(userInput) > -1) {
+					for(var i = 0; i < unguessed; i++) {
+						if(wordLetters[i] === userInput) {
+							wins++;
+							goodGuesses[i] = userInput;
+							document.getElementById('the-word').innerHTML = goodGuesses.join(' ');
+						}	
+					}
+				}
+				else {
+					wrongLetters.push(userInput);
+					amountPeople --;
+					document.getElementById("guesses-remain").innerHTML = guessRemain;
+					document.getElementById("user-guesses").innerHTML = wrongGuesses;
+				}
+			
+			
+		
+};
+
+
 
 // document.onkeyup = function() {
 // 	var userGuess = event.key;
