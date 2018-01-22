@@ -1,14 +1,14 @@
 var hangman = {
-	p1: ["Michael Jordan"],
-	p2: ["Kobe Bryant"],
-	p3: ["Stephen Curry"],
-	p4: ["Hakeem Olajuwon"],
-	p5: ["Shaquille O'Neal"],
-	p6: ["LeBron James"],
-	p7: ["Tim Duncan"],
-	p8: ["Russel Westbrook"],
-	p9: ["Gregg Popovich"],
-	p10: ["Charles Barkley"]
+	p1: ["MICHAEL JORDAN"],
+	p2: ["KOBE BRYANT"],
+	p3: ["STEPHEN CURRY"],
+	p4: ["HAKEEM OLAJUWON"],
+	p5: ["SHAQUILLE O'NEAL"],
+	p6: ["LEBRON JAMES"],
+	p7: ["TIM DUNCAN"],
+	p8: ["RUSSEL WESTBROOK"],
+	p9: ["GREGG POPOVICH"],
+	p10: ["CHARLES BARKLEY"]
 };
 //Place holder for current word
 var player = "";
@@ -21,6 +21,8 @@ var startingPerson = 1;
 
 var guessRemain = 10;
 
+var amountPpl = 10;
+
 var wrongGuesses = [];
 
 var wordQueue = "";
@@ -29,9 +31,12 @@ var wordLetters = [];
 
 var goodGuesses = [];
 
-function hangGame() {
+var guessTracker = 0;
+
+function nextRound() {
 	//Beginning the queue of people to be hanged
-	wordQueue = hangman["p"+ startingPerson][0];
+	//Need to add a startingPerson++
+	wordQueue = hangman["p" + startingPerson][0];
 	//splitting player names into letters
 	wordLetters = wordQueue.split('');
 	//Number of underscores
@@ -40,22 +45,47 @@ function hangGame() {
 	guessRemain = 10;
 	wrongLetters =[];
 	goodGuesses =[];
-	possAnswers = ['a','b','c',
-					  'd','e','f',
-					  'g','h','i',
-					  'j','k','l',
-					  'm','n','o',
-					  'p','q','r',
-					  's','t','u',
-					  'v','w','x',
-					  'y','z'];
+	possAnswers = ["a","b","c",
+					  "d","e","f",
+					  "g","h","i",
+					  "j","k","l",
+					  "m","n","o",
+					  "p","q","r",
+					  "s","t","u",
+					  "v","w","x",
+					  "y","z","'", " "];
+	hangGame();
+}
+
+
+//Basic setup for the game
+function hangGame() {
+	//Beginning the queue of people to be hanged
+	//Need to add a startingPerson++
+	wordQueue = hangman["p" + startingPerson][0];
+	//splitting player names into letters
+	wordLetters = wordQueue.split('');
+	//Number of underscores
+	unguessed = wordLetters.length;
+	
+	guessRemain = 10;
+	wrongLetters =[];
+	goodGuesses =[];
+	possAnswers = ["a","b","c",
+					  "d","e","f",
+					  "g","h","i",
+					  "j","k","l",
+					  "m","n","o",
+					  "p","q","r",
+					  "s","t","u",
+					  "v","w","x",
+					  "y","z","'", " "];
 
 
 	for(var i = 0; i< unguessed; i++) {
 		goodGuesses.push("_");
 		document.getElementById("the-word").innerHTML = goodGuesses;
 	}
-
 	document.getElementById("the-word").innerHTML = goodGuesses.join(" ");
 	document.getElementById("guesses-remain").innerHTML = guessRemain;
 	document.getElementById("wins").innerHTML = wins;
@@ -63,36 +93,45 @@ function hangGame() {
 	document.getElementById("user-guesses").innerHTML = wrongGuesses;
 };
 
-
+//Compares the user's guess to the word
 function guessVsWord(userInput) {
-	if(wordQueue.indexOf(userInput) > -1) {
-		for(var i = 0; i < unguessed; i++) {
-			if(wordLetters[i].toLowerCase() === userInput) {
-				wins++;
+	if (wordQueue.indexOf(userInput) > -1) {
+		for (var i = 0; i < unguessed; i++) {
+			if (wordLetters[i] === userInput) {
+				guessTracker++
 				goodGuesses[i] = userInput;
-				document.getElementById('the-word').innerHTML = goodGuesses.join(' ');
+				document.getElementById('the-word').innerHTML = goodGuesses.join(" ");
 			}	
 		}
 	}
 	else {
-		wrongLetters.push(userInput);
+		wrongGuesses.push(" " + userInput);
 		guessRemain --;
 		document.getElementById("guesses-remain").innerHTML = guessRemain;
 		document.getElementById("user-guesses").innerHTML = wrongGuesses;
 	}
-			
-			
-		
+					
 };
 
+//Cycles to next round
+function nextPerson() {
+	if(startingPerson <= amountPpl) {
+		startingPerson++;
+	}
+};
+
+
 function winVsLoss() {
-	if(wins === unguessed) {
+	if(guessTracker === unguessed) {
 		wins++;
 		document.getElementById('wins').innerHTML = wins;
+		nextPerson();
+		nextRound();
 	}
 	else if(guessRemain === 0) {
 		losses++;
 		document.getElementById('losses').innerHTML = losses;
+		nextRound();
 	}
 };
 
@@ -103,41 +142,18 @@ document.onkeyup = function(event) {
 	for(var i = 0; i < possAnswers.length; i++) {	
 		if(userGuess === possAnswers[i]) {
 			var wordParts = possAnswers.splice(i,1);
-			guessVsWord(userGuess);
+			guessVsWord(userGuess.toUpperCase());
 			winVsLoss();
-		}
-	}		
+		};
+	};		
 		
 };
 
+if (wins++) {
+	nextPerson();
+}
 
 
-// //Displays incorrectly guessed letter on screen
-// function usedLetters() {
-// 	var userGuess = event.key
-
-// 	if (userGuess !== player.toLowerCase().indexOf( String.fromCharCode( e.which )) {
-// 		document.getElementById("user-guesses").innerHTML = userGuess
-// 	}
-// }
-
-// function playerName() {
-// 	for (var i = 0 ; i < hangman.p1[0].length ; i++) {
-// 		console.log(i);
-// 	}
-// };
-
-// function checkAnswer(userInput){
-// 	if (quiz["q"+ startingQuestion][1]===userInput){
-// 		score = score + 1;
-
-// 		nextPerson()
-// 		reloadInfo()
-// 	}else{
-// 		nextPerson()
-// 		reloadInfo()
-// 	}
-// }
 
 // function reloadInfo(){
 // 	var scoreHtml = "<p>SCORE: " + score + "</p>"
@@ -147,32 +163,10 @@ document.onkeyup = function(event) {
 // 	document.querySelector("#questionPlace").innerHTML = questionHtml;
 // }
 
-// function nextPerson(){
-// 	if(startingPerson <= amountPeople){
-// 		startingPerson++;
-// 	}
-	// else{
-
-	// 	var scoreHtml = "<h1>GAME OVER</h1>"
-	// 	document.querySelector("#scorePlace").innerHTML = scoreHtml;
-	// 	document.querySelector("#questionPlace").innerHTML = questionHtml;
-	// }
-	
-// };
 
 //Notes:
 
 
-
-//Will need to use toLowerCase()
-
-// if (correct guess) {
-// 	wins++
-// }
-
-// else {
-// 	function for adding guessed letters to list
-// }
 // var hangman = {
 // 	p1: ["Michael Jordan", "_ _ _ _ _ _ _   _ _ _ _ _ _"],
 // 	p2: ["Kobe Bryant", "_ _ _ _   _ _ _ _ _ _"],
