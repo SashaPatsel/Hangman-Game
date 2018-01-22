@@ -91,6 +91,7 @@ function hangGame() {
 	document.getElementById("wins").innerHTML = wins;
 	document.getElementById("losses").innerHTML = losses;
 	document.getElementById("user-guesses").innerHTML = wrongGuesses;
+	hideThePics()
 };
 
 //Compares the user's guess to the word
@@ -127,6 +128,7 @@ function winVsLoss() {
 		document.getElementById('wins').innerHTML = wins;
 		nextPerson();
 		nextRound();
+		changePic();
 	}
 	else if(guessRemain === 0) {
 		losses++;
@@ -149,11 +151,37 @@ document.onkeyup = function(event) {
 		
 };
 
-if (wins++) {
-	nextPerson();
+function changePic() {
+	var steph = document.getElementById("steph");
+	var lbj = document.getElementById("lbj");
+	var shaq = document.getElementById("shaq");
+	var kd = document.getElementById("kd");
+	var ai = document.getElementById("ai");
+	var mike = document.getElementById("mike");
+	// if (wins === 1) {
+	steph.style.display = "none";
+	lbj.style.display = "none";
+	shaq.style.display = "none";
+	kd.style.display = "block";
+	ai.style.display = "block";
+	mike.style.display = "block";
+	// }
+
 }
 
+function hideThePics() {
+	kd.style.display = "none";
+	ai.style.display = "none";
+	mike.style.display = "none";
+}
 
+function stopDaMusic() {
+
+}
+
+function nextSong() {
+
+}
 
 // function reloadInfo(){
 // 	var scoreHtml = "<p>SCORE: " + score + "</p>"
