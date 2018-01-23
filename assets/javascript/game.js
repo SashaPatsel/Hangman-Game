@@ -1,15 +1,16 @@
 var hangman = {
-	p1: ["MICHAEL JORDAN"],
-	p2: ["KOBE BRYANT"],
-	p3: ["STEPHEN CURRY"],
-	p4: ["HAKEEM OLAJUWON"],
-	p5: ["SHAQUILLE O'NEAL"],
-	p6: ["LEBRON JAMES"],
-	p7: ["TIM DUNCAN"],
-	p8: ["RUSSEL WESTBROOK"],
-	p9: ["GREGG POPOVICH"],
-	p10: ["CHARLES BARKLEY"]
+	p0: ["MICHAEL JORDAN"],
+	p1: ["KOBE BRYANT"],
+	p2: ["STEPHEN CURRY"],
+	p3: ["HAKEEM OLAJUWON"],
+	p4: ["SHAQUILLE O'NEAL"],
+	p5: ["LEBRON JAMES"],
+	p6: ["TIM DUNCAN"],
+	p7: ["RUSSEL WESTBROOK"],
+	p8: ["GREGG POPOVICH"],
+	p9: ["CHARLES BARKLEY"]
 };
+alert("Don't forget that spaces count too!")
 //Place holder for current word
 var player = "";
 
@@ -17,34 +18,41 @@ var wins = 0;
 
 var losses = 0;
 
-var startingPerson = 1;
-
-var guessRemain = 10;
+var guessRemain = 6;
 
 var amountPpl = 10;
 
+//The incorrect guesses will be pushed into this array
 var wrongGuesses = [];
 
+//pass random (or ordered) word to a string
 var wordQueue = "";
 
+//An array containing the letters in a given word as separate components
 var wordLetters = [];
 
+//container for the _s, and the letters that replace them
 var goodGuesses = [];
 
 var guessTracker = 0;
 
+//Reset after each correctly guess word
 function nextRound() {
 	//Beginning the queue of people to be hanged
-	//Need to add a startingPerson++
-	wordQueue = hangman["p" + startingPerson][0];
+	// wordQueue = hangman[Math.floor(Math.random() * hangman.length)];
+	// wordQueue = hangman["p" + startingPerson][0];
+	wordQueue = hangman["p" + wins][0];
 	//splitting player names into letters
-	wordLetters = wordQueue.split('');
+	wordLetters = wordQueue.split("");
 	//Number of underscores
 	unguessed = wordLetters.length;
 	
-	guessRemain = 10;
+	guessRemain = 6;
+	guessTracker = 0;
 	wrongLetters =[];
 	goodGuesses =[];
+	wrongGuesses= [];
+	//
 	possAnswers = ["a","b","c",
 					  "d","e","f",
 					  "g","h","i",
@@ -55,20 +63,23 @@ function nextRound() {
 					  "v","w","x",
 					  "y","z","'", " "];
 	hangGame();
+	winVsLoss();
+	console.log("nextRound");
 }
 
 
 //Basic setup for the game
 function hangGame() {
 	//Beginning the queue of people to be hanged
-	//Need to add a startingPerson++
-	wordQueue = hangman["p" + startingPerson][0];
+	// wordQueue = hangman[Math.floor(Math.random() * hangman.length)];
+	// wordQueue = hangman["p" + startingPerson][0];
+	wordQueue = hangman["p" + wins][0];
 	//splitting player names into letters
-	wordLetters = wordQueue.split('');
+	wordLetters = wordQueue.split("");
 	//Number of underscores
 	unguessed = wordLetters.length;
 	
-	guessRemain = 10;
+	guessRemain = 6;
 	wrongLetters =[];
 	goodGuesses =[];
 	possAnswers = ["a","b","c",
@@ -91,15 +102,17 @@ function hangGame() {
 	document.getElementById("wins").innerHTML = wins;
 	document.getElementById("losses").innerHTML = losses;
 	document.getElementById("user-guesses").innerHTML = wrongGuesses;
-	hideThePics()
+	hideThePics();
+	// checkArray();
 };
 
 //Compares the user's guess to the word
 function guessVsWord(userInput) {
+	//-1 instead of zero because it won't register the first letter otherwise
 	if (wordQueue.indexOf(userInput) > -1) {
 		for (var i = 0; i < unguessed; i++) {
 			if (wordLetters[i] === userInput) {
-				guessTracker++
+				guessTracker++;
 				goodGuesses[i] = userInput;
 				document.getElementById('the-word').innerHTML = goodGuesses.join(" ");
 			}	
@@ -114,25 +127,20 @@ function guessVsWord(userInput) {
 					
 };
 
-//Cycles to next round
-function nextPerson() {
-	if(startingPerson <= amountPpl) {
-		startingPerson++;
-	}
-};
+//Cycles to next player in the object
+
 
 
 function winVsLoss() {
 	if(guessTracker === unguessed) {
 		wins++;
-		document.getElementById('wins').innerHTML = wins;
-		nextPerson();
+		document.getElementById("wins").innerHTML = wins;
 		nextRound();
 		changePic();
 	}
 	else if(guessRemain === 0) {
 		losses++;
-		document.getElementById('losses').innerHTML = losses;
+		document.getElementById("losses").innerHTML = losses;
 		nextRound();
 	}
 };
@@ -148,7 +156,6 @@ document.onkeyup = function(event) {
 			winVsLoss();
 		};
 	};		
-		
 };
 
 function changePic() {
@@ -183,27 +190,18 @@ function nextSong() {
 
 }
 
-// function reloadInfo(){
-// 	var scoreHtml = "<p>SCORE: " + score + "</p>"
-// 	document.querySelector("#scorePlace").innerHTML = scoreHtml;
-	 
-// 	var questionHtml = quiz["p"+ startingQuestion][0]
-// 	document.querySelector("#questionPlace").innerHTML = questionHtml;
-// }
+// this code could potentially eliminate the need for users to push the space bar.	
 
-
-//Notes:
-
-
-// var hangman = {
-// 	p1: ["Michael Jordan", "_ _ _ _ _ _ _   _ _ _ _ _ _"],
-// 	p2: ["Kobe Bryant", "_ _ _ _   _ _ _ _ _ _"],
-// 	p3: ["Stephen Curry", "_ _ _ _ _ _ _   _ _ _ _ _"],
-// 	p4: ["Hakeem Olajuwon", "_ _ _ _ _ _   _ _ _ _ _ _ _ _"],
-// 	p5: ["Shaquille O'Neal", "_ _ _ _ _ _ _ _ _   _ _ _ _ _ _"],
-// 	p6: ["LeBron James", "_ _ _ _ _ _   _ _ _ _ _"],
-// 	p7: ["Tim Duncan", "_ _ _   _ _ _ _ _ _"],
-// 	p8: ["Russel Westbrook", "_ _ _ _ _ _   _ _ _ _ _ _ _ _ _"],
-// 	p9: ["Gregg Popovich", "_ _ _ _ _   _ _ _ _ _ _ _ _"],
-// 	p10: ["Charles Barkley", "_ _ _ _ _ _ _   _ _ _ _ _ _ _"]
+// function checkArray(){
+// wordQueue = hangman["p" + startingPerson][0];
+//    for(var i=0 ; i < wordQueue.length ; i++){
+//        if(wordQueue[i] === " ")   
+//           return false;
+//    }
+//    return true;
 // };
+
+
+
+
+

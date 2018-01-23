@@ -79,3 +79,21 @@ h4 {
 .text-center {
 	margin-left: 35px;
 }
+
+#kd {
+	position: absolute;
+	bottom: -15px;
+}
+
+#ai {
+	position: absolute;
+	left: 380px;
+	bottom: -40px;
+}
+
+#mike {
+	position: absolute;
+	left: 730px;
+	bottom: -60px;
+}
+
