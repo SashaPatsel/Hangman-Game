@@ -39,8 +39,6 @@ var guessTracker = 0;
 //Reset after each correctly guess word
 function nextRound() {
 	//Beginning the queue of people to be hanged
-	// wordQueue = hangman[Math.floor(Math.random() * hangman.length)];
-	// wordQueue = hangman["p" + startingPerson][0];
 	wordQueue = hangman["p" + wins][0];
 	//splitting player names into letters
 	wordLetters = wordQueue.split("");
@@ -64,17 +62,13 @@ function nextRound() {
 					  "y","z","'", " "];
 	hangGame();
 	winVsLoss();
-	// nextSong();
-	// stopDaMusic();
-	console.log("nextRound");
+
 }
 
 
 //Basic setup for the game
 function hangGame() {
 	//Beginning the queue of people to be hanged
-	// wordQueue = hangman[Math.floor(Math.random() * hangman.length)];
-	// wordQueue = hangman["p" + startingPerson][0];
 	wordQueue = hangman["p" + wins][0];
 	//splitting player names into letters
 	wordLetters = wordQueue.split("");
@@ -159,165 +153,3 @@ document.onkeyup = function(event) {
 		};
 	};		
 };
-
-// function changePic() {
-
-// 	// if (wins === 1) {
-// 	steph.style.display = "none";
-// 	lbj.style.display = "none";
-// 	shaq.style.display = "none";
-// 	kd.style.display = "block";
-// 	ai.style.display = "block";
-// 	mike.style.display = "block";
-// 	// }
-
-// }
-
-// function hideThePics() {
-// 	var steph = document.getElementById("steph");
-// 	var lbj = document.getElementById("lbj");
-// 	var shaq = document.getElementById("shaq");
-// 	var kd = document.getElementById("kd");
-// 	var ai = document.getElementById("ai");
-// 	var mike = document.getElementById("mike");
-// 	var brodie = document.getElementById("brodie");
-// 	var mamba = document.getElementById("mamba");
-// 	var beard = document.getElementById("beard");
-// 	kd.style.display = "none";
-// 	ai.style.display = "none";
-// 	mike.style.display = "none";
-// 	brodie.style.display = "none";
-// 	mamba.style.display = "none";
-// 	beard.style.display = "none"
-// }
-
-// function picNext {
-// 	if (wins === 1) {
-// 		changePic();
-// 	}
-// };
-
-// function stopDaMusic() {
-// 	var song1 = document.getElementById("#song1");
-// 	var song2 = document.getElementById("#song2");
-// 	var song3 = document.getElementById("#song3");
-// 	var song4 = document.getElementById("#song4");
-// 	var song5 = document.getElementById("#song5");
-// 	var song6 = document.getElementById("#song6");
-// 	var song7 = document.getElementById("#song7");
-// 	var song8 = document.getElementById("#song8");
-// 	var song9 = document.getElementById("#song9");
-// 	var song10 = document.getElementById("#song10");
-// 	song1.play();
-// 	song2.pause();
-// 	song2.style.display = "none";
-// 	song3.pause();
-// 	song3.style.display = "none";
-// 	song4.pause();
-// 	song4.style.display = "none";
-// 	song5.pause();
-// 	song5.style.display = "none";
-// 	song6.pause();
-// 	song6.style.display = "none";
-// 	song7.pause();
-// 	song7.style.display = "none";
-// 	song8.pause();
-// 	song8.style.display = "none";
-// 	song9.pause();
-// 	song9.style.display = "none";
-// 	song10.pause();
-// 	song10.style.display = "none";
-
-// };
-
-// function nextSong() {
-// 	var song1 = document.getElementById("#song1");
-// 	var song2 = document.getElementById("#song2");
-// 	var song3 = document.getElementById("#song3");
-// 	var song4 = document.getElementById("#song4");
-// 	var song5 = document.getElementById("#song5");
-// 	var song6 = document.getElementById("#song6");
-// 	var song7 = document.getElementById("#song7");
-// 	var song8 = document.getElementById("#song8");
-// 	var song9 = document.getElementById("#song9");
-// 	var song10 = document.getElementById("#song10");
-// 		if (wins === 1) {
-// 		song1.pause();
-// 		song2.play();
-// 		song2.style.display = "block";
-
-// 	};
-// 		if (wins === 2) {
-// 		song2.pause();
-// 		song3.play();
-// 		song3.style.display = "block";
-// 	};
-
-// }
-// 		if else (wins === 3) {
-// 		song3.pause();
-// 		song4.play();
-// 		song4.style.display = "block";
-// 	};
-// 		if else (wins === 4) {
-// 		song4.pause();
-// 		song5.play();
-// 		song5.style.display = "block";
-// 	};
-
-// 		if else (wins === 5) {
-// 		song5.pause();
-// 		song6.play();
-// 		song6.style.display = "block";
-// 	};
-// 		if else (wins === 6) {
-// 		song6.pause();
-// 		song7.play();
-// 		song7.style.display = "block";
-// 	};
-// 		if else (wins === 7) {
-// 		song7.pause();
-// 		song8.play();
-// 		song8.style.display = "block";
-// 	};
-// 		if else (wins === 8) {
-// 		song8.pause();
-// 		song9.play();
-// 		song9.style.display = "block";
-// 	};
-// 		if else (wins === 9) {
-// 		song9.pause();
-// 		song10.play();
-// 		song10.style.display = "block";
-// 	};
-	
-// 		if else (wins === 10) {
-// 			alert("Your record is " + wins + " - " + losses);
-
-// 	};
-// }
-
-// this code could potentially eliminate the need for users to push the space bar.	
-
-// function checkArray(){
-// wordQueue = hangman["p" + startingPerson][0];
-//    for(var i=0 ; i < wordQueue.length ; i++){
-//        if(wordQueue[i] === " ")   
-//           return false;
-//    }
-//    return true;
-// };
-
-
-
-// # Responsive Assignment
-// ##  Things You Did Well
-
-
-// ## Things To Improve On
-
-
-// ## Final Comments
-
-
-
