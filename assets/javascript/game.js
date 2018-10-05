@@ -10,7 +10,7 @@ var hangman = {
 	p8: ["GREGG POPOVICH"],
 	p9: ["CHARLES BARKLEY"]
 };
-alert("Don't forget that spaces count too!")
+
 //Place holder for current word
 var player = "";
 
@@ -309,6 +309,15 @@ document.onkeyup = function(event) {
 // };
 
 
+
+// # Responsive Assignment
+// ##  Things You Did Well
+
+
+// ## Things To Improve On
+
+
+// ## Final Comments
 
 
 

@@ -67,12 +67,12 @@ h4 {
 }
 
 .audio-player {
-	width: 70px;
-	background-color: red;
+	width: 200px;
+
 	position: absolute;
-	top: 120px;
-    left: 46%;
-    margin-right: -54%;
+	top: 110px;
+	left: 50%;
+	transform: translateX(-50%);
 
 }
 
@@ -113,4 +113,10 @@ h4 {
 	left: 730px;
 	bottom: -60px;	
 }
+.your-name {
+	margin-left: 50px;
+}
+
+
+
 
