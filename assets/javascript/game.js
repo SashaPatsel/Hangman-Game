@@ -125,8 +125,6 @@ function guessVsWord(userInput) {
 
 //Cycles to next player in the object
 
-
-
 function winVsLoss() {
 	if(guessTracker === unguessed) {
 		wins++;

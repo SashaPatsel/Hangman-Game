@@ -18,8 +18,32 @@ Feel free to clone this repository! No other installation necessary.
 * CSS
 * JavaScript
 
-## For Developers
+## Code Snippets
+```javascript
+//Compares the user's guess to the word
+function guessVsWord(userInput) {
+	//-1 instead of zero because it won't register the first letter otherwise
+	if (wordQueue.indexOf(userInput) > -1) {
+		for (var i = 0; i < unguessed; i++) {
+      // A good guess
+			if (wordLetters[i] === userInput) {
+				guessTracker++;
+				goodGuesses[i] = userInput;
+				document.getElementById('the-word').innerHTML = goodGuesses.join(" ");
+			}	
+		}
+  }
+  // A wrong guess
+	else {
+		wrongGuesses.push(" " + userInput);
+		guessRemain --;
+		document.getElementById("guesses-remain").innerHTML = guessRemain;
+		document.getElementById("user-guesses").innerHTML = wrongGuesses;
+	}
+					
+};
 
+```
 
 ## Authors
 
