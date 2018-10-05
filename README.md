@@ -1,9 +1,13 @@
 <h1 align="center">🏀 NBA Legends Hangman 🏀</h1>
 
-<img src="assets/images/hangman.png">
+
 Test your NBA history knowledge as well as your powers of deduction in this original hangman game.
 
 The ball is in your hands, and it's up to you to make the game-winning shot with only six seconds left on the clock (It means you get six guesses).
+
+<img src="assets/images/hangman.png">
+
+[Play Here](https://sashapatsel.github.io/Hangman-Game/)
 
 ### Installing
 
